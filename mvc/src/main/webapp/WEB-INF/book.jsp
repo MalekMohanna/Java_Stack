@@ -12,5 +12,6 @@
 <h2>Description :<c:out value="${book.description}"></c:out></h2>
 <h2>Language :<c:out value="${book.language}"></c:out></h2>
 <h2>Number of Pages :<c:out value="${book.numberOfPages}"></c:out></h2>
+<h1><a href="/books">go back</a></h1>
 </body>
 </html>
