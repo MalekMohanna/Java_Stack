@@ -1,5 +1,7 @@
 package com.malek.mvc.controllers;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +18,16 @@ public class BookController {
     }
 	
 	@RequestMapping("/books/{bookId}")
-	public String index(@PathVariable("bookId") Long bookId, Model model)
+	public String book(@PathVariable("bookId") Long bookId, Model model)
 	{
 		Book book = bookService.findBook(bookId);
 		model.addAttribute("book", book);
-		return "index.jsp";
+		return "book.jsp";
 	}
+    @RequestMapping("/books")
+    public String index(Model model) {
+        List<Book> books = bookService.allBooks();
+        model.addAttribute("books", books);
+        return "index.jsp";
+    }
 }
