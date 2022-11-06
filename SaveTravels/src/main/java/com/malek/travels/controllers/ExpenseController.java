@@ -1,5 +1,7 @@
 package com.malek.travels.controllers;
 
+import java.awt.print.Book;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.malek.travels.models.Expense;
 import com.malek.travels.services.ExpenseService;
@@ -31,4 +35,22 @@ public String create(@Valid @ModelAttribute("expense") Expense expense, BindingR
         return "redirect:/";
     }
 }
+
+@GetMapping("/edit/{id}")
+public String edit(@PathVariable("id") Long id, Model model) {
+    Expense expense = expenseService.findExpense(id);
+    model.addAttribute("expense", expense);
+    return "edit.jsp";
+}
+
+@PutMapping("/edit/{id}")
+public String update(@Valid @ModelAttribute("expense") Expense expense,@PathVariable("id") Long id, BindingResult result) {
+    if (result.hasErrors()) {
+        return "edit.jsp";
+    } else {
+        expenseService.updateExpense(id, expense);
+        return "redirect:/";
+    }
+}
+
 }

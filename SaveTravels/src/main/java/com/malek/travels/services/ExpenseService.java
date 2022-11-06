@@ -35,7 +35,7 @@ public Expense findExpense(Long id) {
 public void deleteExpense(long x) {
 	expenseRepo.deleteById(x);
 }
-public Expense updateBook(Long id,Expense expense) {
+public Expense updateExpense(Long id,Expense expense) {
 	Expense toUpdate= findExpense(id);
 	toUpdate.setAmount(expense.getAmount());
 	toUpdate.setDescription(expense.getDescription());;
