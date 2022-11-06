@@ -21,3 +21,7 @@ td,th{
 h1{
 	margin-left: 35%;
 }
+
+form{
+	margin: 0 auto;
+}

@@ -13,17 +13,27 @@
 </head>
 <body>
 	<h1>Save Travels</h1>
-	<table class="table table-dark table-hover">
+	<table class="table table-dark table-hover" id="mytable">
 		<tr>
 			<th>Expense</th>
 			<th>Vendor</th>
 			<th>Amount</th>
+			<th>Update</th>
+			<th>Delete</th>
 		</tr>
 		<c:forEach var="exp" items="${travels}">
 			<tr>
-				<td>${exp.expenseName}</td>
+				<td><a href="/expenses/${exp.id}">${exp.expenseName}</a></td>
 				<td>${exp.vendor}</td>
-				<td>${exp.amount}</td>
+				<td> <span>$</span>${exp.amount}</td>
+				<td><a href="/edit/${exp.id}">Edit</a></td>
+				<td>
+					<form action="/expense/${exp.id}" method="post">
+						    <input type="hidden" name="_method" value="delete">
+						    <input type="submit" value="Delete">
+					</form>
+
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

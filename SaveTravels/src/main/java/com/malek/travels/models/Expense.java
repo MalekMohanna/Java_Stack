@@ -28,8 +28,7 @@ public class Expense {
     @Size(min = 5, max = 200)
     private String vendor;
     @NotNull
-    @Size(min = 3, max = 40)
-    private String amount;
+    private Double amount;
     @NotNull
     @Size(min = 3, max = 40)
     private String description;
@@ -41,7 +40,7 @@ public class Expense {
 	public Expense() {
 
 	}
-	public Expense(String expenseName,String vendor,String amount,String description) {
+	public Expense(String expenseName,String vendor,Double amount,String description) {
 		this.expenseName = expenseName;
 		this.vendor = vendor;
 		this.amount = amount;
@@ -59,10 +58,10 @@ public class Expense {
 	public void setVendor(String vendor) {
 		this.vendor = vendor;
 	}
-	public String getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
-	public void setAmount(String amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 	public String getDescription() {
