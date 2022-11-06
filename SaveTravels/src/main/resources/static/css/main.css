@@ -1,0 +1,23 @@
+@charset "ISO-8859-1";
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+table {
+	margin: 0 auto;
+	font-size: 20px;
+}
+
+#mytable{
+	width: 40%;
+	margin-top: 100px;
+}
+td,th{
+	border-left: white 1px solid;
+}
+
+h1{
+	margin-left: 35%;
+}
