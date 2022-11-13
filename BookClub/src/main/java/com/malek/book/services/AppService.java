@@ -111,4 +111,18 @@ public class AppService {
     public List<Book> allBooks() {
     	return bookRepository.findAll();
     }
+    public void createBorrower(Book b,User user) {
+    	b.setBorrower(user);
+    	bookRepository.save(b);
+    }
+    public void removeBorrower(Book b,User user) {
+    	b.setBorrower(null);
+    	bookRepository.save(b);
+    }
+    public List<Book> unborrowedBooks(){
+    	return bookRepository.findAllByBorrowerIdIs(null);
+    }
+    public List<Book> borrowedBooks(User u){
+    	return bookRepository.findAllByBorrowerIdIs(u.getId());
+    }
 }

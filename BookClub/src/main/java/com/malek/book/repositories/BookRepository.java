@@ -9,4 +9,5 @@ import com.malek.book.models.Book;
 @Repository
 public interface BookRepository extends CrudRepository<Book,Long>{
 List<Book> findAll();
+List<Book> findAllByBorrowerIdIs(Long id);
 }

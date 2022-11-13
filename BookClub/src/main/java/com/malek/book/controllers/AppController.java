@@ -89,6 +89,35 @@ public class AppController {
     	return "redirect:/home";
     }
     
+    //borrow book
+    @GetMapping("/bookmarket")
+    public String marketb(Model model,HttpSession session) {
+    	Long userId = (Long)session.getAttribute("user_id");
+    	User user=appService.findUser(userId);
+    	model.addAttribute("booksun",appService.unborrowedBooks());
+    	model.addAttribute("borrowed",appService.borrowedBooks(user));
+    	model.addAttribute("userId",userId);
+    	return "market.jsp";
+    }
+    
+    @PostMapping("/borrowbook")
+    public String borrowing(@RequestParam(name="bookId")Long bookId,HttpSession session) {
+    	Book b = appService.findBookByID(bookId);
+    	Long userId = (Long)session.getAttribute("user_id");
+    	User user=appService.findUser(userId);
+    	appService.createBorrower(b, user);
+    	return "redirect:/bookmarket";
+    }
+    
+    @PostMapping("/unborrowbook")
+    public String unborrowing(@RequestParam(name="bookId")Long bookId,HttpSession session) {
+    	Book b = appService.findBookByID(bookId);
+    	Long userId = (Long)session.getAttribute("user_id");
+    	User user=appService.findUser(userId);
+    	appService.removeBorrower(b, user);
+    	return "redirect:/bookmarket";
+    }
+    
 
     // create new user
     @GetMapping("/")

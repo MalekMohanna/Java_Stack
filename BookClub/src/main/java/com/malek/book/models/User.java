@@ -50,8 +50,18 @@ public class User {
     private Date createdAt;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    public List<Book> getBorrowedbooks() {
+		return borrowedbooks;
+	}
+
+	public void setBorrowedbooks(List<Book> borrowedbooks) {
+		this.borrowedbooks = borrowedbooks;
+	}
+
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<Book> books;
+    @OneToMany(mappedBy="borrower", fetch = FetchType.LAZY)
+    private List<Book> borrowedbooks;
 
     // -------------------constructors (include an empty one)-------------------
     public User() {}
